@@ -1,4 +1,4 @@
-# Mr Money -  Professuional Ai Trading System
+# Mr Money -  Professional Ai Trading System
 
 Mr Money is a fully autonomous, retail & institutional-grade trading system that connects Claude AI (via Anthropic Computer Use API) to TradingView to visually analyze charts and execute high-probability confluence trades.
 
