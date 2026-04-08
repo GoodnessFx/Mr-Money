@@ -1,0 +1,29 @@
+# Mr Money - AI Powered Trading System - Pinned Dependencies
+# Core Framework
+anthropic==0.25.0
+playwright==1.42.0
+v20==3.0.25
+ccxt==4.4.100
+SQLAlchemy==2.0.28
+sqlcipher3==0.5.2
+python-dotenv==1.0.1
+APScheduler==3.10.4
+structlog==24.1.0
+PyYAML==6.0.1
+cryptography==42.0.5
+
+# HTTP Client (Enforcing TLS 1.2+)
+requests==2.31.0
+urllib3==2.0.7
+httpx==0.27.0
+
+# Testing
+pytest==8.1.1
+pytest-asyncio==0.23.6
+pytest-cov==4.1.0
+
+# Other
+pydantic==2.10.6
+python-telegram-bot==21.0.1
+black==24.3.0
+isort==5.13.2

@@ -1,0 +1,42 @@
+confluence:
+  factors:
+  - description: 4H trend matches trade direction
+    name: higher_timeframe_trend_aligned
+    weight: 3
+  - description: Price at S/R or Supply/Demand zone
+    name: key_level_interaction
+    weight: 2
+  - description: BOS/CHOCH on 1H/15M
+    name: market_structure_break
+    weight: 2
+  - description: Engulfing/Pin bar at level
+    name: candle_confirmation
+    weight: 1
+  - description: Volume spike on signal
+    name: volume_confirmation
+    weight: 1
+  - description: Price at 0.618/0.786
+    name: fibonacci_confluence
+    weight: 1
+  required_score: 7
+pairs:
+  crypto:
+  - BTC/USDT
+  forex:
+  - EURUSD
+  - GBPUSD
+  - USDJPY
+risk:
+  kelly_fraction: 0.25
+  max_daily_loss_pct: 3.0
+  max_open_trades: 3
+  max_risk_per_trade_pct: 1.0
+  min_rr_ratio: 3.0
+  volatility_filter_multiplier: 1.4
+schedule:
+  market_open_only: false
+  scan_interval_minutes: 15
+timeframes:
+  entry: 15M
+  intermediate: 1H
+  primary: 4H

@@ -1,0 +1,16 @@
+.env
+*.db
+*.db-shm
+*.db-wal
+logs/
+data/
+screenshots/
+__pycache__/
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+.DS_Store
+node_modules/
+.vscode/
