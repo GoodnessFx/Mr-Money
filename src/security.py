@@ -62,6 +62,7 @@ class SecurityManager:
         """Initializes the SecurityManager and runs startup checks."""
         self.validate_env()
         self.validate_anthropic_key()
+        self.validate_oanda_account_id()
         self.fernet = Fernet(os.getenv("DB_ENCRYPTION_KEY").encode())
         self.strategy_config = self._load_strategy_config()
         logger.info("security_startup_checks_passed")
@@ -89,6 +90,18 @@ class SecurityManager:
             )
             exit(1)
         logger.info("anthropic_key_format_validated")
+
+    def validate_oanda_account_id(self):
+        """Validates OANDA account ID format. Hard exits if invalid."""
+        account_id = os.getenv("OANDA_ACCOUNT_ID")
+        # OANDA IDs are typically XXX-XXX-XXXXXXX-XXX or similar hyphenated numeric strings
+        if not account_id or "-" not in account_id:
+            logger.error("invalid_oanda_account_id_format")
+            print(
+                "CRITICAL: Invalid OANDA Account ID format. It should look like 001-001-1234567-001."
+            )
+            exit(1)
+        logger.info("oanda_account_id_format_validated")
 
     async def validate_broker_connectivity(self):
         """Validates broker API connectivity on startup. Hard exits if fails."""
