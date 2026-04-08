@@ -1,10 +1,10 @@
-# Mr Money —  Professuional Ai Trading System
+# Mr Money -  Professuional Ai Trading System
 
 Mr Money is a fully autonomous, retail & institutional-grade trading system that connects Claude AI (via Anthropic Computer Use API) to TradingView to visually analyze charts and execute high-probability confluence trades.
 
 ## What it does
-- **Autonomous Chart Analysis**: Claude AI "looks" at live TradingView charts across multiple timeframes (Daily, 4H, 1H, 15M).
-- **Institutional Strategy**: Applies a rigorous 4-step analysis framework: Trend Bias -> Market Structure -> Order Blocks -> Entry Triggers.
+- **Autonomous Chart Analysis**: Claude AI "looks" at live TradingView charts across multiple timeframes (Daily, 4H, 1H, 15M and even the 5m).
+- **Institutional Strategy**: Applies a rigorous 4-step analysis framework: Trend Bias -> Market Structure -> liquidity -> Order Blocks -> Entry Triggers.
 - **Mathematical Sizing**: Uses the fractional Kelly Criterion and Bayesian win probability updates to optimize risk.
 - **Security-First**: Encrypted database, masked API keys, and non-root Docker containerization.
 - **Multi-Broker**: Native support for OANDA (Forex) and CCXT (Crypto fallback).
