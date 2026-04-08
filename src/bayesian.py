@@ -1,7 +1,9 @@
-import structlog
-from typing import Dict, Any, List
-from src.db import db_manager, BayesianState
 import datetime
+from typing import Any, Dict, List
+
+import structlog
+
+from src.db import BayesianState, db_manager
 
 # Setup logger
 logger = structlog.get_logger()

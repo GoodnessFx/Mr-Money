@@ -1,20 +1,12 @@
-import os
 import datetime
+import os
 import shutil
 import tarfile
-from sqlalchemy import (
-    create_engine,
-    Column,
-    Integer,
-    String,
-    Float,
-    DateTime,
-    JSON,
-    ForeignKey,
-    Boolean,
-)
-from sqlalchemy.orm import declarative_base, relationship, sessionmaker
+
 import structlog
+from sqlalchemy import (JSON, Boolean, Column, DateTime, Float, ForeignKey,
+                        Integer, String, create_engine)
+from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 
 # Setup logger
 logger = structlog.get_logger()
@@ -46,7 +38,9 @@ class Trade(Base):
     status = Column(String, default="open")  # 'open', 'closed', 'cancelled'
     result = Column(Float)  # Profit/Loss amount
     pnl_pct = Column(Float)
-    entry_time = Column(DateTime, default=lambda: datetime.datetime.now(datetime.timezone.utc))
+    entry_time = Column(
+        DateTime, default=lambda: datetime.datetime.now(datetime.timezone.utc)
+    )
     exit_time = Column(DateTime)
     setup_type = Column(String)  # For Bayesian updates
     trace_id = Column(String)  # Audit trail
@@ -61,7 +55,9 @@ class Signal(Base):
     __tablename__ = "signals"
 
     id = Column(Integer, primary_key=True)
-    timestamp = Column(DateTime, default=lambda: datetime.datetime.now(datetime.timezone.utc))
+    timestamp = Column(
+        DateTime, default=lambda: datetime.datetime.now(datetime.timezone.utc)
+    )
     pair = Column(String, nullable=False)
     trace_id = Column(String, unique=True)
     raw_json = Column(JSON)
@@ -81,7 +77,9 @@ class BayesianState(Base):
     losses = Column(Integer, default=0)
     total_trades = Column(Integer, default=0)
     win_probability = Column(Float, default=0.5)  # Posterior
-    last_updated = Column(DateTime, default=lambda: datetime.datetime.now(datetime.timezone.utc))
+    last_updated = Column(
+        DateTime, default=lambda: datetime.datetime.now(datetime.timezone.utc)
+    )
 
 
 class DailyPL(Base):
@@ -90,7 +88,11 @@ class DailyPL(Base):
     __tablename__ = "daily_pl"
 
     id = Column(Integer, primary_key=True)
-    date = Column(DateTime, unique=True, default=lambda: datetime.datetime.now(datetime.timezone.utc))
+    date = Column(
+        DateTime,
+        unique=True,
+        default=lambda: datetime.datetime.now(datetime.timezone.utc),
+    )
     starting_balance = Column(Float)
     current_pnl_pct = Column(Float, default=0.0)
     is_breached = Column(Boolean, default=False)
@@ -102,7 +104,9 @@ class AuditLog(Base):
     __tablename__ = "audit_logs"
 
     id = Column(Integer, primary_key=True)
-    timestamp = Column(DateTime, default=lambda: datetime.datetime.now(datetime.timezone.utc))
+    timestamp = Column(
+        DateTime, default=lambda: datetime.datetime.now(datetime.timezone.utc)
+    )
     trace_id = Column(String)
     pair = Column(String)
     action = Column(String)  # 'scan', 'signal', 'size', 'execute', 'risk_check'

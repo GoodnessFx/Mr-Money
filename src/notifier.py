@@ -1,7 +1,8 @@
-import os
 import asyncio
-from telegram import Bot
+import os
+
 import structlog
+from telegram import Bot
 
 # Setup logger
 logger = structlog.get_logger()

@@ -22,8 +22,8 @@ from src.executor import broker_executor
 from src.notifier import notifier
 from src.risk import risk_guardian
 from src.security import security_manager
-from src.trading_signal import signal_validator
 from src.sizer import kelly_sizer
+from src.trading_signal import signal_validator
 
 # Setup logger with JSON structure
 os.makedirs("logs", exist_ok=True)

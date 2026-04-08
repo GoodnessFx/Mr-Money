@@ -1,10 +1,10 @@
-# Mr Money -  Professional Ai Trading System
+# Mr Money — Professional AI Trading System 
 
-Mr Money is a fully autonomous, retail & institutional-grade trading system that connects Claude AI (via Anthropic Computer Use API) to TradingView to visually analyze charts and execute high-probability confluence trades.
+Mr Money is a fully autonomous, institutional-grade trading system that connects Claude AI (via Anthropic Computer Use API) to TradingView to visually analyze charts and execute high-probability confluence trades.
 
 ## What it does
-- **Autonomous Chart Analysis**: Claude AI "looks" at live TradingView charts across multiple timeframes (Daily, 4H, 1H, 15M and even the 5m).
-- **Institutional Strategy**: Applies a rigorous 4-step analysis framework: Trend Bias -> Market Structure -> liquidity -> Order Blocks -> Entry Triggers.
+- **Autonomous Chart Analysis**: Claude AI "looks" at live TradingView charts across multiple timeframes (Daily, 4H, 1H, 15M).
+- **Institutional Strategy**: Applies a rigorous 4-step analysis framework: Trend Bias -> Advanced Market Structure -> Liquidity Detection -> Entry Triggers.
 - **Mathematical Sizing**: Uses the fractional Kelly Criterion and Bayesian win probability updates to optimize risk.
 - **Security-First**: Encrypted database, masked API keys, and non-root Docker containerization.
 - **Multi-Broker**: Native support for OANDA (Forex) and CCXT (Crypto fallback).
@@ -46,8 +46,8 @@ Mr Money is a fully autonomous, retail & institutional-grade trading system that
 1. **Clone the repo**: `git clone https://github.com/your-repo/mr_money.git && cd mr_money`
 2. **Setup Env**: `cp .env.example .env` (fill in your keys)
 3. **Gen Encryption Key**: `python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"` (add to .env)
-4. **Init Strategy**: `python src/main.py --mode=paper` (generates `config/strategy.yaml`, then edit it)
-5. **Launch**: `docker-compose up -d --build`
+4. **Init Strategy**: `python -m src.main --mode=paper` (generates `config/strategy.yaml`, then edit it)
+5. **Launch**: `docker compose up -d --build` (Note: use `docker compose` instead of `docker-compose`)
 
 ## Configuration guide (strategy.yaml explained)
 - **pairs**: Define the Forex and Crypto pairs to scan.
@@ -88,7 +88,7 @@ Every trade outcome is logged per `setup_type`. The bot calculates the posterior
 ## Running in paper trading mode (OANDA practice)
 Start the system with:
 ```bash
-python src/main.py --mode=paper
+python -m src.main --mode=paper
 ```
 In paper mode, the bot performs full analysis and sizing but generates mock `order_id`s instead of hitting the broker API.
 
@@ -97,7 +97,7 @@ In paper mode, the bot performs full analysis and sizing but generates mock `ord
 - [ ] Strategy backtested manually via Claude's logic
 - [ ] `OANDA_ENVIRONMENT` set to `live`
 - [ ] Sufficient margin in account
-- [ ] Start with: `python src/main.py --mode=live` (requires manual confirmation)
+- [ ] Start with: `python -m src.main --mode=live` (requires manual confirmation)
 
 ## Monitoring and logs
 - **Audit Log**: Every decision is stored in the `audit_logs` table in the DB.
@@ -114,5 +114,7 @@ In paper mode, the bot performs full analysis and sizing but generates mock `ord
 - Adjust `scan_interval_minutes` based on your strategy's timeframe.
 
 ## Disclaimer
-**Capital at Risk**. Trading Forex and Crypto involves significant risk. The developers are not responsible for any financial losses. Use at your own risk.
+**Capital at Risk**. Trading Forex and Crypto involves significant risk. Mr Money is provided for educational and research purposes. The developers are not responsible for any financial losses. Use at your own risk.
 
+---
+*Built with precision for the modern quantitative trader.*

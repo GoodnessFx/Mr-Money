@@ -1,5 +1,7 @@
+from typing import Any, Dict, List
+
 import structlog
-from typing import Dict, Any, List
+
 from src.security import security_manager
 
 # Setup logger

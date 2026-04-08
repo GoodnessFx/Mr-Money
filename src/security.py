@@ -7,10 +7,10 @@ import os
 import ssl
 from pathlib import Path
 
-import structlog
-import yaml
 import httpx
 import requests
+import structlog
+import yaml
 from cryptography.fernet import Fernet
 from dotenv import load_dotenv
 
@@ -133,13 +133,18 @@ class SecurityManager:
                 "factors": [
                     {
                         "name": "higher_timeframe_trend_aligned",
-                        "weight": 3,
+                        "weight": 2,
                         "description": "4H trend matches trade direction",
                     },
                     {
-                        "name": "key_level_interaction",
+                        "name": "liquidity_sweep_confirmed",
+                        "weight": 3,
+                        "description": "Price swept EQH/EQL or Trendline Liquidity",
+                    },
+                    {
+                        "name": "inducement_tapped",
                         "weight": 2,
-                        "description": "Price at S/R or Supply/Demand zone",
+                        "description": "Price cleared IDM before entry",
                     },
                     {
                         "name": "market_structure_break",
@@ -147,19 +152,19 @@ class SecurityManager:
                         "description": "BOS/CHOCH on 1H/15M",
                     },
                     {
-                        "name": "candle_confirmation",
+                        "name": "order_block_interaction",
                         "weight": 1,
-                        "description": "Engulfing/Pin bar at level",
+                        "description": "Price at valid Supply/Demand or OB",
                     },
                     {
-                        "name": "volume_confirmation",
+                        "name": "fvg_fill_confluence",
                         "weight": 1,
-                        "description": "Volume spike on signal",
+                        "description": "Price filled Fair Value Gap",
                     },
                     {
-                        "name": "fibonacci_confluence",
+                        "name": "fibonacci_discount_premium",
                         "weight": 1,
-                        "description": "Price at 0.618/0.786",
+                        "description": "Price in Discount (buy) or Premium (sell)",
                     },
                 ],
             },

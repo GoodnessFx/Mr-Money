@@ -1,6 +1,8 @@
-import pytest
 import datetime
 from unittest.mock import MagicMock, patch
+
+import pytest
+
 from src.risk import RiskGuardian
 
 

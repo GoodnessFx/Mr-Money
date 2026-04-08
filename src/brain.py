@@ -3,13 +3,13 @@ Claude AI analysis engine for Mr Money.
 Uses Anthropic Computer Use API to analyze TradingView charts.
 """
 
+import asyncio
 import base64
 import json
 import os
 import uuid
 from typing import Any, Dict
 
-import asyncio
 import structlog
 from anthropic import AsyncAnthropic
 
@@ -53,22 +53,24 @@ You are an elite institutional forex and commodities trader with 10+ years exper
 Your analysis framework (apply in this exact order):
 
 STEP 1 — HIGHER TIMEFRAME BIAS (Daily and 4H)
-- Determine trend: are price making HH/HL (uptrend), LH/LL (downtrend), or ranging?
-- Identify major S/R levels visible on this timeframe.
+- Determine trend: distinguish between EXTERNAL (swing) structure and INTERNAL (sub) structure.
+- Identify major S/R and Supply/Demand zones visible on this timeframe.
 - Note any premium/discount zones (above/below 50% of last major swing).
 - Go from DAILY to 4H to 1H then 15M.
 
-STEP 2 — INTERMEDIATE STRUCTURE (1H)
-- Look for market structure breaks (BOS) or change of character (CHOCH).
-- Identify order blocks: last bearish candle before a bullish BOS (for buys) or last bullish candle before bearish BOS (for sells).
-- Mark demand zones (buy) or supply zones (sell).
-- Only trade in the direction of the 4H bias unless you have a strong CHOCH signal.
+STEP 2 — ADVANCED MARKET STRUCTURE (1H)
+- Identify the SWING points (HH/HL or LH/LL).
+- Look for INDUCEMENT (IDM): the first internal pullback after a break of structure (BOS).
+- Confirm Change of Character (CHOCH) for trend reversals or BOS for trend continuation.
+- Identify the TRADING RANGE: work only within the most recent valid high and low.
+- Identify Order Blocks (OB) and Fair Value Gaps (FVG) within the range.
 
-STEP 3 — ENTRY TRIGGER (15M)
-- Wait for price to return to 1H order block or key level.
-- Look for confirming candle: pin bar, engulfing, rejection wick, or fair value gap fill.
-- Check if volume confirms (higher than 20-period average on signal candle).
-- Fibonacci: is price at 0.618 or 0.786 of last 1H swing?
+STEP 3 — LIQUIDITY DETECTION & ENTRY TRIGGER (15M)
+- Spot LIQUIDITY: Equal Highs (EQH), Equal Lows (EQL), or Trendline Liquidity.
+- Wait for a LIQUIDITY SWEEP: price must take out liquidity (stop hunt) before reversing.
+- Identify the ENTRY TRIGGER: SMT (Smart Money Tool) divergence, or a 15M CHOCH after the sweep.
+- Confirm volume spike on the sweep and reversal candle.
+- Fibonacci: ensure entry is in the DISCOUNT zone for buys and PREMIUM zone for sells.
 
 STEP 4 — TRADE PARAMETERS
 - Entry: current close price of signal candle.

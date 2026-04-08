@@ -1,9 +1,11 @@
+import asyncio
 import os
-import v20
+from typing import Any, Dict, Optional
+
 import ccxt
 import structlog
-import asyncio
-from typing import Dict, Any, Optional
+import v20
+
 from src.security import security_manager
 
 # Setup logger

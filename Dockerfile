@@ -45,4 +45,4 @@ HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
     CMD python -c "import src.security; src.security.health_check()"
 
 # Run the application (default to paper mode)
-CMD ["python", "src/main.py", "--mode=paper"]
+CMD ["python", "-m", "src.main", "--mode=paper"]

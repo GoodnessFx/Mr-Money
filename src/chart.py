@@ -2,8 +2,10 @@ import asyncio
 import os
 import time
 from pathlib import Path
-from playwright.async_api import async_playwright, Page, BrowserContext
+
 import structlog
+from playwright.async_api import BrowserContext, Page, async_playwright
+
 from src.security import security_manager
 
 # Setup logger
